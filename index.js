@@ -30,6 +30,12 @@ function details(petName)
                 listItem.textContent = `${property}: ${petDeets[property]}`;
                 detailItem.appendChild(listItem)
             }
+
+            const detailsDiv = document.getElementById('details');
+            if (detailsDiv)
+            {
+            detailsDiv.style.display = 'block';
+            }
     });
 }
 
