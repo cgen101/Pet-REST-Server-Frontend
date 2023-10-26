@@ -36,8 +36,24 @@ function details(petName)
             {
             detailsDiv.style.display = 'block';
             }
-    });
+            
+        })
+
+        .then(deletePet => {
+            document.getElementById('delete').addEventListener('click', () => { 
+                adopt(petName);
+            });
+        });
 }
+
+function adopt(petName)
+{ 
+    let oldName = petName;
+    fetch(`http://localhost:8000/${petName}`,{ method: 'DELETE', 
+    })
+        .then (window.alert(`Congrats! You have adoopted ${oldName}. ${oldName} is now removed from our list of pets.`))
+}
+
 
 
 
