@@ -36,19 +36,15 @@ function details(petName)
             {
             detailsDiv.style.display = 'block';
             }
-            
-        })
 
-        .then(deletePet => {
             document.getElementById('delete').addEventListener('click', () => { 
                 adopt(petName);
-            })
-        })
+            });
 
-        .then(editPet => { 
             document.getElementById('edit-button').addEventListener('click', () => { 
                 edit(petName);
-            })
+            });
+            
         });
 }
 
@@ -78,8 +74,9 @@ function createEditForm(petData, petName)
     const editForm = document.createElement('form');
  
     editForm.addEventListener('submit', (event) => {
-        const updatedData = extractForm(editForm);
-        submitEdit(updatedData, petName);
+        event.preventDefault();
+        const newData = extractForm(editForm);
+        submitEdit(petName, newData);
     });
 
     for (const property in petData) {
@@ -101,7 +98,7 @@ function createEditForm(petData, petName)
 
 function extractForm(editForm) 
 { 
-    const formData = new FormData(form);
+    const formData = new FormData(editForm);
     const data = {};
     for (const [key, value] of formData.entries()) 
     {
@@ -110,7 +107,7 @@ function extractForm(editForm)
     return data;
 }
 
-function submitEdit(newData, petName) 
+function submitEdit(petName, newData) 
 { 
     fetch (`http://localhost:8000/${petName}`, { 
         method: 'PUT', 
@@ -118,6 +115,8 @@ function submitEdit(newData, petName)
     })
     .then (window.alert(`${petName}'s info has been updated.`));
 }
+
+
 
 
 
