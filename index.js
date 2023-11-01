@@ -117,7 +117,10 @@ function submitEdit(petName, newData)
 
 function addPet() 
 { 
-    document.getElementById('add-pet-form').addEventListener('submit', (event) => {
+    const addForm=document.getElementById('add-pet-form'); 
+    addForm.style.display = 'block';
+
+    addForm.addEventListener('submit', (event) => {
         event.preventDefault();
         const formData = new FormData(event.target);
 

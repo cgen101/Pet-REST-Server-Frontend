@@ -3,3 +3,7 @@
     display: none; 
     background-color: white;
 }
+
+#add-pet-form { 
+    display: none; 
+}
