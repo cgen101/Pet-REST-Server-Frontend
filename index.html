@@ -28,15 +28,29 @@
 
       <div class="edit"> 
             <button id="edit-button">Edit</button>
-          <div class="edit-form"> 
+          <div id="edit-contain"> 
+            <div id="edit-form"> 
 
+            </div>
           </div>
       </div>
     </div>
 
-    <div class="submit-pet"> 
-        <button id="add">Submit a pet</button>
+    <div class="add-pet"> 
+        <button id="add" onclick="addPet()">Submit a pet</button>
     </div>
-    
+    <div class="add-form">
+      <form id="add-pet-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <label for="species">Species:</label>
+        <input type="text" id="species" name="species" required>
+        <label for="breed">Breed:</label>
+        <input type="text" id="breed" name="breed" required>
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age" required>
+        <input type="submit">
+      </form>
+    </div>
   </body>
 </html>

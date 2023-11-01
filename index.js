@@ -92,7 +92,6 @@ function createEditForm(petData, petName)
     submitButton.textContent = 'Submit';
     editForm.appendChild(submitButton);
 
-
     return editForm; 
 }
 
@@ -116,6 +115,30 @@ function submitEdit(petName, newData)
     .then (window.alert(`${petName}'s info has been updated.`));
 }
 
+function addPet() 
+{ 
+    document.getElementById('add-pet-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        const formData = new FormData(event.target);
+
+        const newPetData = {};
+        formData.forEach((value, key) => {
+            newPetData[key] = value;
+        });
+
+        submitPet(newPetData);
+    });
+
+}
+
+function submitPet(newPetData) 
+{ 
+    fetch (`http://localhost:8000/${newPetData.name}`, { 
+        method: 'POST', 
+        body: JSON.stringify(newPetData), 
+    })
+    .then (window.alert(`Your pet has been added to our list of pets.`));
+}
 
 
 
