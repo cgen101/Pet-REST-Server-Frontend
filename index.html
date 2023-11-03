@@ -9,48 +9,46 @@
     <script>fetchPets()</script>
   </head>
   <body>
-    <div class="title"> 
-        <h1> 
-            Our Pets
-        </h1>
-    </div>
-
-    <div class ="pets"> 
-        <ul id="pets-list"></ul>
-    </div>
-
-    <div id="details"> 
-      <ul id="details-list"></ul>
-
-      <div class="adopt">
-        <button id="delete">Adopt</button>
+      <div class="title"> 
+          <h1> 
+              Our Pets
+          </h1>
       </div>
 
-      <div class="edit"> 
+      <div class ="pets"> 
+          <ul id="pets-list"></ul>
+      </div>
+
+      <div class="details-contain">
+        <div id="details"> 
+          <ul id="details-list"></ul>
+
+          <div class="buttons">
+            <button id="delete">Adopt</button>
             <button id="edit-button">Edit</button>
-          <div id="edit-contain"> 
-            <div id="edit-form"> 
-
-            </div>
+            <button id="close-detail">Close</button>
           </div>
+          <div id="edit-contain"> 
+            <div id="edit-form"> </div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="add-pet"> 
-        <button id="add" onclick="addPet()">Submit a pet</button>
-    </div>
-    <div class="add-form">
-      <form id="add-pet-form">
-        <label for="name">Name:</label>
-        <input type="text" id="name" name="name" required>
-        <label for="species">Species:</label>
-        <input type="text" id="species" name="species" required>
-        <label for="breed">Breed:</label>
-        <input type="text" id="breed" name="breed" required>
-        <label for="age">Age:</label>
-        <input type="text" id="age" name="age" required>
-        <input type="submit">
-      </form>
-    </div>
+      <div class="add-pet"> 
+          <button id="add" onclick="addPet()">Submit a pet</button>
+      </div>
+      <div id="add-form">
+        <form id="add-pet-form">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+          <label for="species">Species:</label>
+          <input type="text" id="species" name="species" required>
+          <label for="breed">Breed:</label>
+          <input type="text" id="breed" name="breed" required>
+          <label for="age">Age:</label>
+          <input type="text" id="age" name="age" required>
+          <input type="submit">
+        </form>
+      </div>
   </body>
 </html>

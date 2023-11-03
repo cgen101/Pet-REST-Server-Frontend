@@ -1,3 +1,4 @@
+
 function fetchPets() 
 {
     fetch('http://localhost:8000')
@@ -8,13 +9,17 @@ function fetchPets()
                 const listItem = document.createElement('li');
                 const button = document.createElement('button');
                 button.textContent = petName; 
-                button.addEventListener('click', () => {
+                button.addEventListener('click', () => {  
+                    let editForm = document.getElementById('edit-contain'); 
+                    if(editForm)
+                    closeEditForm()
+                
                     details(petName);
                 });
                 listItem.appendChild(button); 
                 petsList.appendChild(listItem); 
             });
-            })
+        })
 }
 
 function details(petName) 
@@ -24,25 +29,34 @@ function details(petName)
         .then(petDeets => { 
             const detailItem = document.getElementById('details-list');
             detailItem.innerHTML = ''; 
+            if (petName=="Meowy" || petName=="Barky") { 
+                const listItem = document.createElement('li');
+                listItem.textContent = `name: ${petName}`;
+                detailItem.appendChild(listItem)
+            }
             for (const property in petDeets) 
             { 
                 const listItem = document.createElement('li');
                 listItem.textContent = `${property}: ${petDeets[property]}`;
                 detailItem.appendChild(listItem)
             }
-
+            
             const detailsDiv = document.getElementById('details');
             if (detailsDiv)
             {
-            detailsDiv.style.display = 'block';
+                detailsDiv.style.display = 'flex';
             }
 
             document.getElementById('delete').addEventListener('click', () => { 
                 adopt(petName);
             });
 
-            document.getElementById('edit-button').addEventListener('click', () => { 
+            document.getElementById('edit-button').addEventListener('click', () => {
                 edit(petName);
+            });
+
+            document.getElementById('close-detail').addEventListener('click', () => {
+                detailsDiv.style.display = 'none'; 
             });
             
         });
@@ -61,11 +75,13 @@ function edit(petName)
     fetch(`http://localhost:8000/${petName}`)
         .then(response => response.json()) 
         .then(petData => {
-            const editForm = createEditForm(petData, petName);
-
+            const editForm = new createEditForm(petData, petName);
             const editContainer = document.getElementById('edit-contain');
             editContainer.innerHTML = '';
             editContainer.appendChild(editForm);
+        })
+        .then (showEdit => { 
+            document.getElementById('edit-contain').style.display='flex'; 
         });
 }
 
@@ -79,21 +95,32 @@ function createEditForm(petData, petName)
         submitEdit(petName, newData);
     });
 
+
     for (const property in petData) {
+        if (property!="name")
+        {
         const input = document.createElement('input');
         input.type = 'text';
         input.name = property;
         input.value = petData[property];
+        input.style = 'width: 80px; margin-left: 9px'
         editForm.appendChild(input);
+        }
     }
 
     const submitButton = document.createElement('button');
     submitButton.type = 'submit';
     submitButton.textContent = 'Submit';
+    submitButton.style = 'margin-left: 10px'
     editForm.appendChild(submitButton);
+
 
     return editForm; 
 }
+
+function closeEditForm() { 
+    document.getElementById('edit-contain').style.display = 'none'; 
+} 
 
 function extractForm(editForm) 
 { 
@@ -112,13 +139,15 @@ function submitEdit(petName, newData)
         method: 'PUT', 
         body: JSON.stringify(newData), 
     })
+    .then(closeEditForm())
     .then (window.alert(`${petName}'s info has been updated.`));
 }
 
 function addPet() 
 { 
     const addForm=document.getElementById('add-pet-form'); 
-    addForm.style.display = 'block';
+    document.getElementById('add-form').style.display = 'flex';
+    addForm.style.display = 'flex';
 
     addForm.addEventListener('submit', (event) => {
         event.preventDefault();

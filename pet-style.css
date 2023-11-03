@@ -1,9 +1,82 @@
+.title { 
+    text-align: center; 
+}
+
+.pets { 
+    display: flex; 
+    justify-content: center;
+}
+
+
+#pets-list li { 
+    display: flex; 
+    flex-direction: column;
+    margin-left: -40px;
+    margin-bottom: 50px;
+    list-style: none;
+}
+
+.details-contain { 
+    display: flex; 
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
 #details { 
-    border: solid; 
     display: none; 
-    background-color: white;
+    max-width: 500px; 
+    padding: 10px; 
+    flex-direction: column;
+    width: 500px; 
+    margin: auto;
+    border: solid;
+}
+
+.buttons { 
+    display: flex; 
+    flex-direction: row;
+    justify-items: left;
+    justify-content: space-around;
+}
+
+#edit-contain { 
+    display: none; 
+    padding: 10px;
+}
+
+#edit-form { 
+    display: flex; 
+    max-width: 500px; 
 }
 
 #add-pet-form { 
     display: none; 
+    max-height: 25px; 
+    flex-direction: column;
+    padding-top: 10px
+}
+
+#add-form { 
+    display: none;
+    max-width: 500px;
+    height: 300px;
+    border: solid;
+    justify-content: center;
+    padding: 10px;
+    margin: auto;
+}
+
+#add-form input { 
+    margin: 10px;
+}
+
+.add-pet { 
+    display: flex;
+    justify-content: center;
+}
+
+#add {
+    margin: 10px;
 }
